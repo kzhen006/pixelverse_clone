@@ -1,20 +1,26 @@
 // import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // import 'package:flutter_svg/svg.dart';
 // import 'package:pixelverse_clone/constants/constants.dart';
 // import 'package:pixelverse_clone/features/home/widgets/side_drawer.dart';
 // // import 'package:pixelverse_clone/features/tweet/views/create_tweet_view.dart';
 // import 'package:pixelverse_clone/theme/pallete.dart';
 
-// class HomeView extends StatefulWidget {
-//   static route() => MaterialPageRoute(
-//         builder: (context) => const HomeView(),
-//       );
-//   const HomeView({super.key});
+class HomeView extends ConsumerWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const HomeView(),
+      );
+  const HomeView({super.key});
 
-//   @override
-//   State<HomeView> createState() => _HomeViewState();
-// }
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold();
+  }
+  // @override
+  // State<HomeView> createState() => _HomeViewState();
+}
 
 // class _HomeViewState extends State<HomeView> {
 //   int _page = 0;

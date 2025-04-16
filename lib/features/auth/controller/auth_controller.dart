@@ -23,6 +23,8 @@ class AuthController extends StateNotifier<bool> {
       super(false);
   //isLoading
 
+  // _account.get() != null ? HomeScreen : LoginScreen
+
   void signUp({
     required String email,
     required String password,
@@ -34,8 +36,15 @@ class AuthController extends StateNotifier<bool> {
       password: password,
     );
     state = false;
-    res.fold((l) => showSnackBar(context, l.message), 
-    (r) => print(r.email));
+    res.fold(
+      (l) => showSnackBar(context, l.message), 
+      (r) {
+        showSnackBar(context, 'Account created! Please login.');
+        Navigator.push(
+          context,
+          LoginView.route());
+      },
+    );
   }
 
   void login({
@@ -49,8 +58,14 @@ class AuthController extends StateNotifier<bool> {
       password: password,
     );
     state = false;
-    res.fold((l) => showSnackBar(context, l.message), 
-    (r) => print(r.userId));
+    res.fold(
+      (l) => showSnackBar(context, l.message), 
+      (r) {
+      Navigator.push(
+        context,
+        HomeView.route());
+      },
+    );
   }
 }
 
