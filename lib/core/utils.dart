@@ -11,9 +11,11 @@ void showSnackBar(BuildContext context, String content) {
   );
 }
 
-// String getNameFromEmail(String email) {
-//   return email.split('@')[0];
-// }
+String getNameFromEmail(String email) {
+  // test@gmail.com
+  // List = ['test', 'gmail.com']
+  return email.split('@')[0];
+}
 
 // Future<List<File>> pickImages() async {
 //   List<File> images = [];
