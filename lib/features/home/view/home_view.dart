@@ -5,7 +5,7 @@ import 'package:pixelverse_clone/constants/constants.dart';
 
 import 'package:flutter_svg/svg.dart';
 // import 'package:pixelverse_clone/features/home/widgets/side_drawer.dart';
-// // import 'package:pixelverse_clone/features/tweet/views/create_tweet_view.dart';
+import 'package:pixelverse_clone/features/tweet/views/create_tweet_view.dart';
 import 'package:pixelverse_clone/theme/pallete.dart';
 
 class HomeView extends StatefulWidget {
@@ -28,16 +28,20 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
+  onCreateTweet() {
+    Navigator.push(context, CreateTweetScreen.route());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      body: IndexedStack(
+      body: IndexedStack( //maintains state
         index: _page,
         children: UIConstants.bottomTabBarPages,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: onCreateTweet,
         child: const Icon(
           Icons.add,
           color: Pallete.whiteColor,
