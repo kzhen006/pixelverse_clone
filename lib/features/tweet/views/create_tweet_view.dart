@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pixelverse_clone/common/common.dart';
 import 'package:pixelverse_clone/common/rounded_small_button.dart';
 import 'package:pixelverse_clone/constants/assets_constants.dart';
+import 'package:pixelverse_clone/core/utils.dart';
 import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
 import 'package:pixelverse_clone/theme/theme.dart';
 
@@ -19,12 +23,21 @@ class CreateTweetScreen extends ConsumerStatefulWidget {
 
 class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
   final tweetTextController = TextEditingController();
+  List<File> images = [];
 
   @override
   void dispose() {
     super.dispose();
     tweetTextController.dispose();
   }
+
+  void onPickImages() async {
+    images = await pickImages();
+    setState(() {
+      
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +93,23 @@ class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
                   ),
                 ),
               ],
+            ),
+            if (images.isNotEmpty)
+            CarouselSlider(
+              items: images.map(
+                (file) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 5),
+                    child: Image.file(file),
+                    );
+                },
+                ).toList(), 
+              options: CarouselOptions(
+                height: 400,
+                enableInfiniteScroll: false,
+              ),
             )
           ],
         ),
@@ -103,8 +133,11 @@ class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
                 left: 15,
                 right: 15,
               ),
-              child: SvgPicture.asset(
-                AssetsConstants.galleryIcon,
+              child: GestureDetector(
+                onTap: onPickImages,
+                child: SvgPicture.asset(
+                  AssetsConstants.galleryIcon,
+                ),
               ),
             ),
             Padding(
