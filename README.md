@@ -1,16 +1,16 @@
 # pixelverse_clone
 
-A new Flutter project.
 
-## Getting Started
+Source Code for Full Stack Social Media App - Works on Android & iOS!
+A replacement for Twitter!
 
-This project is a starting point for a Flutter application.
+# Features
+Sign Up With Email, Password
+Sign In With Email, Password
+Tweeting Text
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#Tech Stack
+Server: Appwrite Auth, Appwrite Storage, Appwrite Database, Appwrite Realtime
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Client: Flutter, Riverpod
