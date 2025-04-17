@@ -46,6 +46,7 @@ class TweetController extends StateNotifier<bool> {
       super(false);
 
   void shareTweet({
+    //theoreticallly should be okay for images empty list, and if empty, only text tweet
     required List<File> images,
     required String text,
     required BuildContext context,
@@ -55,7 +56,7 @@ class TweetController extends StateNotifier<bool> {
       return;
     }
 
-    if (images.isEmpty) {
+    if (images.isNotEmpty) {
       _shareImageTweet(
         images: images, 
         text: text, 
