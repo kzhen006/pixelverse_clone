@@ -2,10 +2,12 @@ import 'package:any_link_preview/any_link_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pixelverse_clone/common/common.dart';
+import 'package:pixelverse_clone/constants/constants.dart';
 import 'package:pixelverse_clone/core/enums/tweet_type_enum.dart';
 import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
 import 'package:pixelverse_clone/features/tweet/widgets/carousel_image.dart';
 import 'package:pixelverse_clone/features/tweet/widgets/hashtag_text.dart';
+import 'package:pixelverse_clone/features/tweet/widgets/tweet_icon_button.dart';
 import 'package:pixelverse_clone/models/tweet_model.dart';
 import 'package:pixelverse_clone/theme/theme.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -72,12 +74,60 @@ class TweetCard extends ConsumerWidget {
                                   UIDirection.uiDirectionHorizontal,
                               link: 'https://${tweet.link}',
                             ),
-                          ],  
+                          ],
+                          Container(
+                            margin: const EdgeInsets.only(
+                              top: 10,
+                              right: 20,
+                            ),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                TweetIconButton(
+                                  pathName: AssetsConstants.viewsIcon,
+                                  text: (tweet.commentIds.length +
+                                          tweet.reshareCount +
+                                          tweet.likes.length)
+                                      .toString(),
+                                  onTap: () {},
+                                ),
+                                TweetIconButton(
+                                  pathName: AssetsConstants.commentIcon,
+                                  text: tweet.commentIds.length.toString(),
+                                  onTap: () {},
+                                ),
+                                TweetIconButton(
+                                  pathName: AssetsConstants.retweetIcon,
+                                  text: tweet.reshareCount.toString(),
+                                  onTap: () {},
+                                ),
+                                TweetIconButton(
+                                  pathName: AssetsConstants.likeOutlinedIcon,
+                                  text: tweet.likes.length.toString(),
+                                  onTap: () {},
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.share_outlined,
+                                    size: 25,
+                                    color: Pallete.greyColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 1),  
                         ],
                       ),
                     ),
                   ],
                 ),
+                Divider(
+                  color: Pallete.greyColor.withValues(
+                    alpha: 0.25,),
+                  ),
               ],
             );
           },
