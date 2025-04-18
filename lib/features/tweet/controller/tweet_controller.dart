@@ -11,19 +11,6 @@ import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
 import 'package:pixelverse_clone/models/tweet_model.dart';
 //import 'package:pixelverse_clone/models/user_model.dart';
 
-// import 'package:appwrite/appwrite.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:pixelverse_clone/apis/storage_api.dart';
-// import 'package:pixelverse_clone/apis/tweet_api.dart';
-// import 'package:pixelverse_clone/core/enums/notification_type_enum.dart';
-// import 'package:pixelverse_clone/core/enums/tweet_type_enum.dart';
-// import 'package:pixelverse_clone/core/utils.dart';
-// import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
-// import 'package:pixelverse_clone/features/notifications/controller/notification_controller.dart';
-// import 'package:pixelverse_clone/models/tweet_model.dart';
-// import 'package:pixelverse_clone/models/user_model.dart';
-
 
 final tweetControllerProvider = StateNotifierProvider<TweetController, bool>(
   (ref) {
@@ -36,6 +23,11 @@ final tweetControllerProvider = StateNotifierProvider<TweetController, bool>(
     );
   },
 );
+
+final getTweetsProvider = FutureProvider((ref) {
+  final tweetController = ref.watch(tweetControllerProvider.notifier);
+  return tweetController.getTweets();
+});
 class TweetController extends StateNotifier<bool> {
   final TweetAPI _tweetAPI;
   final StorageAPI _storageAPI;
@@ -48,6 +40,11 @@ class TweetController extends StateNotifier<bool> {
       _tweetAPI = tweetAPI,
       _storageAPI = storageAPI,
       super(false);
+
+  Future<List<Tweet>> getTweets() async {
+    final tweetList = await _tweetAPI.getTweets();
+    return tweetList.map((tweet) => Tweet.fromMap(tweet.data)).toList();
+  }
 
   void shareTweet({
     //theoreticallly should be okay for images empty list, and if empty, only text tweet
@@ -180,7 +177,18 @@ class TweetController extends StateNotifier<bool> {
 
 
 
-
+// import 'package:appwrite/appwrite.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:pixelverse_clone/apis/storage_api.dart';
+// import 'package:pixelverse_clone/apis/tweet_api.dart';
+// import 'package:pixelverse_clone/core/enums/notification_type_enum.dart';
+// import 'package:pixelverse_clone/core/enums/tweet_type_enum.dart';
+// import 'package:pixelverse_clone/core/utils.dart';
+// import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
+// import 'package:pixelverse_clone/features/notifications/controller/notification_controller.dart';
+// import 'package:pixelverse_clone/models/tweet_model.dart';
+// import 'package:pixelverse_clone/models/user_model.dart';
 
 // final tweetControllerProvider = StateNotifierProvider<TweetController, bool>(
 //   (ref) {
