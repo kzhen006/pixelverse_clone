@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pixelverse_clone/common/common.dart';
 import 'package:pixelverse_clone/features/tweet/controller/tweet_controller.dart';
+import 'package:pixelverse_clone/features/tweet/widgets/tweet_card.dart';
 // import 'package:pixelverse_clone/common/error_page.dart';
 // import 'package:pixelverse_clone/common/loading_page.dart';
 // import 'package:pixelverse_clone/constants/appwrite_constants.dart';
@@ -27,7 +28,9 @@ class _TweetListState extends ConsumerState<TweetList> {
               itemCount: tweets.length,
               itemBuilder: (BuildContext context, int index) {
                 final tweet = tweets[index];
-                return Text(tweet.text);
+                return TweetCard(
+                  tweet: tweet,
+                );
               },
             );
           }, 
