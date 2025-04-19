@@ -1,10 +1,13 @@
 import 'package:any_link_preview/any_link_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:like_button/like_button.dart';
 import 'package:pixelverse_clone/common/common.dart';
 import 'package:pixelverse_clone/constants/constants.dart';
 import 'package:pixelverse_clone/core/enums/tweet_type_enum.dart';
 import 'package:pixelverse_clone/features/auth/controller/auth_controller.dart';
+import 'package:pixelverse_clone/features/tweet/controller/tweet_controller.dart';
 import 'package:pixelverse_clone/features/tweet/widgets/carousel_image.dart';
 import 'package:pixelverse_clone/features/tweet/widgets/hashtag_text.dart';
 import 'package:pixelverse_clone/features/tweet/widgets/tweet_icon_button.dart';
@@ -102,11 +105,56 @@ class TweetCard extends ConsumerWidget {
                                   text: tweet.reshareCount.toString(),
                                   onTap: () {},
                                 ),
-                                TweetIconButton(
-                                  pathName: AssetsConstants.likeOutlinedIcon,
-                                  text: tweet.likes.length.toString(),
-                                  onTap: () {},
+                                LikeButton(
+                                  size: 25,
+                                  // onTap: (isLiked) async {
+                                  //   ref
+                                  //       .read(tweetControllerProvider.notifier)
+                                  //       .likeTweet(
+                                  //         tweet,
+                                  //         ref.read(currentUserDetailsProvider).value!,
+                                  //       );
+                                  //   return !isLiked;
+                                  // },
+                                  // isLiked: tweet.likes
+                                  //     .contains(ref
+                                  //         .read(currentUserDetailsProvider)
+                                  //         .value!
+                                  //         .uid),
+                                  likeBuilder: (isLiked) {
+                                    return isLiked
+                                        ? SvgPicture.asset(
+                                            AssetsConstants.likeFilledIcon,
+                                            color: Pallete.redColor,
+                                          )
+                                        : SvgPicture.asset(
+                                            AssetsConstants.likeOutlinedIcon,
+                                            color: Pallete.greyColor,
+                                          );
+                                  },
+                                  likeCount: tweet.likes.length,
+                                  countBuilder:
+                                      (likeCount, isLiked, text) {
+                                    return Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 2.0),
+                                      child: Text(
+                                        text,
+                                        style: TextStyle(
+                                          color: isLiked
+                                              ? Pallete.redColor
+                                              : Pallete.whiteColor,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
+                                // TweetIconButton(
+                                //   pathName: AssetsConstants.likeOutlinedIcon,
+                                //   text: tweet.likes.length.toString(),
+                                //   onTap: () {},
+                                // ),
                                 IconButton(
                                   onPressed: () {},
                                   icon: const Icon(
