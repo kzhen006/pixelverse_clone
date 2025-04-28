@@ -5,12 +5,6 @@ import 'package:pixelverse_clone/features/tweet/widgets/tweet_list.dart';
 import 'package:pixelverse_clone/theme/theme.dart';
 import 'package:pixelverse_clone/theme/pallete.dart';
 
-//import 'constants.dart';
-
-// import 'package:twitter_clone/features/explore/view/explore_view.dart';
-// import 'package:twitter_clone/features/notifications/views/notification_view.dart';
-
-
 class UIConstants {
   static AppBar appBar() {
     return AppBar(
@@ -26,8 +20,8 @@ class UIConstants {
 
   static const List<Widget> bottomTabBarPages = [
     TweetList(),
-    Text('Feed Screen'),
-    Text('Search Screen'),
+    Text('Feature In Progress'),
+    Text('Feature Not Enabled'),
     Text('Notification Screen'),
     
     // ExploreView(),
